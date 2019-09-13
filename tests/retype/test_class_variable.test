@@ -1,0 +1,33 @@
+[case test_basic]
+[src]
+class C:
+    "Docstring"
+
+    name = "Dinsdale"
+    print(name)
+    name = "Diinsdaalee"
+[stub]
+class C:
+    name: str
+[apply]
+class C:
+    "Docstring"
+
+    name: str = "Dinsdale"
+    print(name)
+    name = "Diinsdaalee"
+
+
+[case test_type_missmatch]
+[src]
+class C:
+    "Docstring"
+
+    name: int = 0
+    print(name)
+    name = "Diinsdaalee"
+[stub]
+class C:
+    name: str
+[raise]
+incompatible existing variable annotation for 'name'. Expected: 'str', actual: 'int'
